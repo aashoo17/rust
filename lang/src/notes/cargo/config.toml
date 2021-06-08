@@ -1,0 +1,21 @@
+[alias]     # command aliases
+b = "build"
+c = "check"
+t = "test"
+r = "run"
+rr = "run --release"
+br = "build --release"
+
+[build]
+jobs = 8                  # number of parallel jobs, defaults to # of CPUs
+
+[cargo-new]
+name = "Ashutosh Singh"        # name to use in `authors` field
+email = "aashoo17@gmail.com" # email address to use in `authors` field
+vcs = "git"              # VCS to use ('git', 'hg', 'pijul', 'fossil', 'none')
+
+[term]
+verbose = false        # whether cargo provides verbose output
+color = 'always'         # whether cargo colorizes output
+progress.when = 'always' # whether cargo shows progress bar
+progress.width = 100    # width of progress bar
