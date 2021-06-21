@@ -106,18 +106,22 @@ struct Man<T> {
     other: T,
 }
 
-//implementing methods on struct is little weird at first//lifetime in struct
-//I am not sure why struct requires this lifetime
-//I can argue for e.g. say I have 3 references fields in struct
-//so struct can not outlive all three - if it does for any one also it will be dangling pointer
-//so rust can choose smallest of all three lifetime and can compare if struct is bypassing it and that will be it
-//I don't have to hardcode it everywhere
-//TODO: why impl requires <T> to be written if Man<T> is already written
+/*
+implementing methods on struct is little weird at first//lifetime in struct
+I am not sure why struct requires this lifetime
+I can argue for e.g. say I have 3 references fields in struct
+so struct can not outlive all three - if it does for any one also it will be dangling pointer
+so rust can choose smallest of all three lifetime and can compare if struct is bypassing it and that will be it
+I don't have to hardcode it everywhere
+TODO: why impl requires <T> to be written if Man<T> is already written
+*/
 impl<T> Man<T> {}
 
-//so it is possible to restrict T to only i32 and now I can implement method
-//so if impl Man<T> is written rust thinks T is known type like i32 for e.g. but its not so throws error
-//so one more T at impl is required to say it is generic type T now already known type
+/*
+so it is possible to restrict T to only i32 and now I can implement method
+so if impl Man<T> is written rust thinks T is known type like i32 for e.g. but its not so throws error
+so one more T at impl is required to say it is generic type T now already known type
+*/
 impl Man<i32> {}
 
 //lifetimes in rust
@@ -129,4 +133,7 @@ struct AnotherMan<'a> {
 
 //deriving traits for struct
 #[derive(Copy, Clone, Debug)] //I can create all these traits on struct like magically
-struct DeriveTrait;
+struct DeriveTrait{
+    derive: bool,
+    age: i32
+}

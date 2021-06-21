@@ -16,7 +16,7 @@ macro_rules!  name_of_macro{
     ....
 }
 TODO: explain ($l:expr,$r:expr) in pattern for MatchPatternMacro
-this says we will match two expressions seperated by comma first expression stored in variable $l and second in $r
+this says we will match two expressions separated by comma first expression stored in variable $l and second in $r
 */
 
 // a very simple macro which takes blank pattern as input

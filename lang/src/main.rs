@@ -8,6 +8,7 @@
 #![allow(unused_imports)]
 #![allow(unused_variables)]
 #![allow(dead_code)]
+#![feature(duration_constants)]
 
 mod closure;
 mod collections;
@@ -30,8 +31,9 @@ mod tokio;
 mod traits_generics;
 mod types;
 mod utility_traits;
+mod std;
 
 
 fn main() {
-    println!("Hello, world!");
+    
 }
