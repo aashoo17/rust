@@ -1,12 +1,13 @@
 #[test]
 fn integers() {
-    //putting i8, i16 etc at the end of literal so rust recognises it to be i8,i16 otherwise it will thinks as i32
+    //putting i8, i16 etc at the end of literal so rust recognizes it to be i8,i16 otherwise it will thinks as i32
     //or we can explicitly write the type like these let a: i8 = 10;
     //signed integers
     let a = 10i8;
     let b = 10i16;
     let c = 10;
     let d = 10i64;
+
     //[how rust supports 128 bit integers](https://stackoverflow.com/questions/57340308/how-does-rusts-128-bit-integer-i128-work-on-a-64-bit-system)
     let e = 10i128;
     let f = 10isize;
@@ -42,9 +43,10 @@ char: 32 bits wide each - representing unicode
 fn floats() {
     //float
     let a = 10.8f32;
-    let b = 10.8;
+    let b = 10.8;   //default f64
 }
 
+#[test]
 fn bool() {
     //bool
     let a = true;
@@ -65,6 +67,8 @@ fn char() {
     println!("{},{}", b, c);
 }
 
+//references & pointers will have there own section
+
 /*
 &str:
 array:
@@ -73,10 +77,13 @@ tuple:
 struct:
 enum:
  */
+
 #[test]
 fn compound_types() {
     //array
     let a = [10, 20, 30, 40, 50];
+    //ref to arrays
+    let a1 = &a;
     //tuple
     let b = (10, 20, "Hello");
     //access tuple values
@@ -96,4 +103,4 @@ fn compound_types() {
     let e = d.as_str();
 }
 
-//structs, enum etc will be taken up in separate file
+//struct, enum etc will be taken up in separate file

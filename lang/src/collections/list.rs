@@ -3,7 +3,7 @@ use std::collections::LinkedList;
 #[test]
 fn list() {
     //create
-    let mut a: LinkedList<i32> = LinkedList::new(); //blank deque
+    let mut a: LinkedList<i32> = LinkedList::new(); //blank list
 
     //modify
     a.push_back(60);

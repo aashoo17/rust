@@ -128,7 +128,7 @@ async fn main() ->Result<(),Box<dyn std::error::Error>>{
     //connection has to be made first hence we are awaiting and other futures should not run before as connection is required first
     let mut server = TcpListener::bind("127.0.0.1:8000").await?;
 
-    //after conncetion is made talking to clients is totally independent hence all the futures can be processed concurrently
+    //after connection is made talking to clients is totally independent hence all the futures can be processed concurrently
     //Stream is best way to achieve this so after incoming() call we get Incoming struct implementing Stream
     //with which all clients comes as future and can be processed concurrently 
     while let Some(client) = server.incoming().next().await{

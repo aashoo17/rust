@@ -56,7 +56,7 @@ fn pattern_matching() {
 
 //matching multiple possibilities
 #[test]
-fn match_multiple_possiblity() {
+fn match_multiple_possibility() {
     let a = 10;
     match a {
         1..=10 | 30..=100 => {}
@@ -79,7 +79,7 @@ fn pattern_guard() {
     match a {
         // If a pattern moves any values, you can’t put a guard on it. The guard
         // might evaluate to false, and then Rust would go on to the next pattern
-        //Fixme: try to showcase difference between ref and without ref
+        //fixme: try to showcase difference between ref and without ref
         Human::Name(ref name) if name.is_empty() != true => {
             print!("non empty string found");
         }

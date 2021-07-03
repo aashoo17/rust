@@ -4,15 +4,17 @@ use std::thread::sleep;
 //Duration - this struct keeps track of seconds and nanosecond
 #[test]
 fn durations(){
-    let five_seconds = Duration::new(5,0);
+    let five_seconds = Duration::new(5,0);  //5 sec and 0 nano
+    //const variables
     let second = Duration::SECOND;      // 1 second
 
+    //associated functions
     let a = Duration::from_secs(3);
     let b = Duration::from_millis(10);
     let c = Duration::from_micros(10);
     let d = Duration::from_nanos(10);
 
-    println!("{:?}",d);
+    println!("{:?} {:?} {:?} {:?}",a,b,c,d);
 }
 
 //measuring calendar time - SystemTime in rust
@@ -20,6 +22,7 @@ fn durations(){
 fn system_time(){
     let a = SystemTime::now();
     println!("{:?}",a);
+    //TODO: convert to calendar time - in GMT and local time zone
 }
 
 //using monotonic clock for measuring elapsed time - Instant
@@ -30,9 +33,9 @@ fn instant(){
     //make the thread sleep for 3 secs
     println!("Hello elapsed time");
     //check elapsed time in secs 
-    let b = a.elapsed().as_nanos();
-    println!("{}",b);
-} 
+    let b = a.elapsed();
+    println!("{:?}",b);
+}
 
 #[test]
 fn sleep_some_time(){

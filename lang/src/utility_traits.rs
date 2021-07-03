@@ -63,11 +63,11 @@ Smart pointers are classic example of this
 Rc<T>, Mutex<T> etc
 */
 #[test]
-fn box_smart_pointer(){
+fn box_smart_pointer() {
     let mut a = Box::new(10);
     //struct Box is being used as pointer - DererMut example here
     *a = 20;
-    println!("{}",a);
+    println!("{}", a);
 }
 
 /*
@@ -79,7 +79,7 @@ if we want default value call ::default()
 #[derive(Default)]
 struct DefaultStruct;
 
-fn default_test(){
+fn default_test() {
     let a = DefaultStruct::default();
 }
 
@@ -107,23 +107,21 @@ my_func(String::from("Hello"));
 */
 //here T can be anything which implements AsRef<Path>
 // in other words T can be converted to &Path
-fn open<T: AsRef<Path>>(a: T){
-
-}
+fn open<T: AsRef<Path>>(a: T) {}
 /*
 Borrow<T> vs BorrowMut<T>
 this is same as AsRef<T> and AsMut<T>
 but they solve different problem - in Hashing
 
 e.g.
-String implemnts AsRef<str>, AsRef<[u8]> etc that means
+String implements AsRef<str>, AsRef<[u8]> etc that means
 String to &str
 String to &[u8]
-is poosible
+is possible
 
 but for hashing String gives same hash as &str gives same hash but &[u8] will give different hash
 
-so rust says if if two types can give same hash tell it to rust by implementing Borrow<T>, BorrowMut<T> trait
+so rust says if two types can give same hash tell it to rust by implementing Borrow<T>, BorrowMut<T> trait
 if String implements Borrow<str>
 so rust is now confident that if String have Borrow implemented I will get same hash with &str also
 
@@ -133,24 +131,21 @@ let a: HashMap<String, i32> = HashMap::new();
 
 say my get implemented like this
 
-//this will take ownership of key if move type is there like String
-impl HashMap<K, V> where K: Eq + Hash
-{
+this will take ownership of key if move type is there like String
+impl HashMap<K, V> where K: Eq + Hash{
 fn get(&self, key: K) -> Option<&V> { ... }
 }
 
-key jsut used for lookup we don't want ownership
-impl HashMap<K, V> where K: Eq + Hash
-{
-fn get(&self, key: &K) -> Option<&V> { ... }
+key just used for lookup we don't want ownership
+impl HashMap<K, V> where K: Eq + Hash{
+    fn get(&self, key: &K) -> Option<&V> { ... }
 }
 
 I have to write like this
 hashtable.get(&"twenty-two".to_string())
 
 It should be good enough to pass anything that can be hashed and compared with our key type; a &str should be perfectly adequate,
-impl HashMap<K, V> where K: Eq + Hash
-{
+impl HashMap<K, V> where K: Eq + Hash{
 fn get<Q: ?Sized>(&self, key: &Q) -> Option<&V>
 where K: Borrow<Q>,
 Q: Eq + Hash

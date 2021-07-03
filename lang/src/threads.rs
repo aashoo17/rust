@@ -19,7 +19,7 @@ fn channels() {
     let (ts, tr) = mpsc::channel();
     //if move is not written it fails - I think my assumption as move is useless now is not true
     thread::spawn(move || {
-        ts.send(20);
+        ts.send(20).unwrap();
     });
 
     tr.recv().unwrap();

@@ -7,11 +7,11 @@ types of struct
 
 TODO: struct layout in memory
  */
-
+ 
 /*
 named field struct:
 convention - struct starts with caps and uses CamelCase, fields & methods are lowercase
-structs are private to module use pub t make them public
+structs are private to module use pub to make them public
 even struct fields are private by default they need to be made public using pub is are to be used
  */
 
@@ -107,12 +107,7 @@ struct Man<T> {
 }
 
 /*
-implementing methods on struct is little weird at first//lifetime in struct
-I am not sure why struct requires this lifetime
-I can argue for e.g. say I have 3 references fields in struct
-so struct can not outlive all three - if it does for any one also it will be dangling pointer
-so rust can choose smallest of all three lifetime and can compare if struct is bypassing it and that will be it
-I don't have to hardcode it everywhere
+implementing methods on struct is little weird at first 
 TODO: why impl requires <T> to be written if Man<T> is already written
 */
 impl<T> Man<T> {}
@@ -124,8 +119,16 @@ so one more T at impl is required to say it is generic type T now already known 
 */
 impl Man<i32> {}
 
-//lifetimes in rust
-//TODO: span which 'a represents what is it
+/*
+lifetime in struct
+I am not sure why struct requires this lifetime
+I can argue for e.g. say I have 3 references fields in struct
+so struct can not outlive all three - if it does for any one also it will be dangling pointer
+so rust can choose smallest of all three lifetime and can compare if struct is bypassing it and that will be it
+I don't have to hard code it everywhere
+TODO: span which 'a represents what is it
+*/
+
 struct AnotherMan<'a> {
     name: &'a str, //lifetime is required
     age: i32,
@@ -136,4 +139,14 @@ struct AnotherMan<'a> {
 struct DeriveTrait{
     derive: bool,
     age: i32
+}
+
+trait RandomTrait{
+    fn custom_func();
+}
+
+impl RandomTrait for DeriveTrait{
+    fn custom_func() {
+        //do something here
+    }
 }

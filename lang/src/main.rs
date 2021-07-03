@@ -12,7 +12,7 @@
 
 mod closure;
 mod collections;
-mod concurrency;
+mod threads;
 mod core;
 mod crates_modules;
 mod enums;
@@ -32,6 +32,8 @@ mod traits_generics;
 mod types;
 mod utility_traits;
 mod std;
+mod loops;
+mod conditional;
 
 
 fn main() {

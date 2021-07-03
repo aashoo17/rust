@@ -18,7 +18,7 @@ restrictions on references from same owner:
  */
 #[test]
 fn working_with_references() {
-    //TODO: here 3rd restriction that both &T and &mut t can co-exist is not getting followed
+    //todo: here 3rd restriction that both &T and &mut t can co-exist is not getting followed
     // is it because accesses are sequential in this code and both &T and &mut T can not access data together
     let mut a = String::from("Hello World");
     let b = &a;
@@ -44,5 +44,6 @@ fn slices(){
     let b = &a[..];
 
     let c = String::from("Hello World");
+    //todo: this will possibly will fail with utf-8
     let d = &c[..];     //I think this way it is possible because of chars being ascii only
 }
