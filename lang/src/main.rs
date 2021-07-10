@@ -11,8 +11,6 @@
 #![feature(duration_constants)]
 
 mod closure;
-mod collections;
-mod threads;
 mod core;
 mod crates_modules;
 mod enums;
@@ -22,7 +20,6 @@ mod io;
 mod iterators;
 mod lifetimes;
 mod macros;
-mod net;
 mod operator_overloading;
 mod ownership;
 mod references;
@@ -34,6 +31,7 @@ mod utility_traits;
 mod std;
 mod loops;
 mod conditional;
+mod function;
 
 
 fn main() {

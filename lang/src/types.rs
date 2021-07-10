@@ -84,6 +84,7 @@ fn compound_types() {
     let a = [10, 20, 30, 40, 50];
     //ref to arrays
     let a1 = &a;
+    let a2 = b"Hello World";    //byte array
     //tuple
     let b = (10, 20, "Hello");
     //access tuple values

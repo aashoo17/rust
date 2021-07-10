@@ -22,7 +22,7 @@ fn durations(){
 fn system_time(){
     let a = SystemTime::now();
     println!("{:?}",a);
-    //TODO: convert to calendar time - in GMT and local time zone
+    //todo: convert to calendar time - in GMT and local time zone
 }
 
 //using monotonic clock for measuring elapsed time - Instant
@@ -30,12 +30,16 @@ fn system_time(){
 fn instant(){
     //get the current monotonic instant
     let a = Instant::now();
+    println!("{:?}",a);
     //make the thread sleep for 3 secs
     println!("Hello elapsed time");
     //check elapsed time in secs 
     let b = a.elapsed();
     println!("{:?}",b);
 }
+
+//todo: CPU time
+//todo: alarm signal handling
 
 #[test]
 fn sleep_some_time(){

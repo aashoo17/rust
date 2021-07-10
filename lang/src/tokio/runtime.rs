@@ -50,7 +50,7 @@ fn multi_thread_scheduler() -> Result<(), Box<dyn Error>> {
 }
 
 /*
-this multithreaded scheduler code written above in multi_thread_scheduler() is easily written as using
+this multi threaded scheduler code written above in multi_thread_scheduler() is easily written as using
 #[tokio::main] macro - this will spawn multi threaded runtime
 
 #[tokio::main]
@@ -58,7 +58,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>>{
     print!("print me");
     Ok(())
 }
-this gets desugared to
+this gets desugar to
 fn main(){
     let rt = Runtime::new()?;
     rt.block_on(

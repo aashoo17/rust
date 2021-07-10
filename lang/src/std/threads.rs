@@ -31,9 +31,9 @@ fn mutexes() {
     let a = Arc::new(Mutex::new(10));
     let b = Arc::clone(&a);
 
-    thread::spawn(move || {
+    let th = thread::spawn(move || {
         *b.lock().unwrap() = 30;
     });
-    //FIXME: mutex a has still data 10 instead of 30
+    th.join().unwrap();
     print!("{:?}", a);
 }

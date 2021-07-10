@@ -35,7 +35,7 @@ fn open_for_any_option() {
 //buffered read/write in std lib
 #[test]
 fn buffered_read() {
-    let mut f = File::open("file.txt").unwrap();
+    let f = File::open("file.txt").unwrap();
     let mut buf_reader = BufReader::new(f);
     let mut buf: [u8; 100] = [0; 100];
     buf_reader.read(&mut buf).unwrap();
