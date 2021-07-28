@@ -38,7 +38,7 @@ reference to utf-8 sequence is called slice as &str in rust
 
 String works with utf-8 sequences on heap - so a slice for String is &str
 */
-
+#[test]
 fn slices(){
     let a = [10,20,30,40,50];
     let b = &a[..];

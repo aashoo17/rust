@@ -46,5 +46,7 @@ fn server() -> io::Result<()> {
     loop {
         let b = a.recv_from(&mut buf)?;
         a.send_to(&buf, b.1)?;
+        //clear the buffer otherwise some part of old value will reflect
+        buf.fill_with(||{0})
     }
 }

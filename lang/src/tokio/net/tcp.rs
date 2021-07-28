@@ -1,4 +1,4 @@
-use tokio::io::{AsyncReadExt, AsyncWriteExt, self};
+use tokio::io::{self, AsyncReadExt, AsyncWriteExt};
 use tokio::net::{TcpListener, TcpStream};
 use tokio::sync::mpsc;
 
@@ -7,22 +7,22 @@ tcp client:
 TcpStream emulates the tcp socket in rust
 connect() call will try to connect to tcp server socket located at that address
 then we loop and
-keep on writing and reading to and from tcp server in a buffer 
+keep on writing and reading to and from tcp server in a buffer
 */
 #[tokio::main]
 #[test]
 async fn client() -> io::Result<()> {
     //connect to this address
     let mut a = TcpStream::connect("127.0.0.1:3000").await?;
-    let mut buf = [0;100];
-    //loop and write and read continuosly from server
-    loop{
+    let mut buf = [0; 100];
+    //loop and write and read continuously from server
+    loop {
         //write this to server
         a.write(b"Hello World\n").await?;
         //read from server and keep in buf
         a.read(&mut buf).await?;
         //print the buffer
-        println!("{:?}",buf);
+        println!("{:?}", buf);
     }
 }
 
@@ -36,7 +36,7 @@ bind() call does three steps
 then we loop continuously doing these steps
 1. accept the connection from any tcp client
 2. read data from the client into a buffer
-3. write same data on the client socket 
+3. write same data on the client socket
 */
 
 #[tokio::main]
@@ -55,13 +55,13 @@ async fn server() -> io::Result<()> {
 }
 /*
 motive of this code:
-create a server socket 
+create a server socket
 in a loop do the following
 accept the connection from any client socket
 read data from the client socket
 and send the client address over a channel to another green thread (tokio::spwan())
 the purpose of this new green thread is to write the data to received client address
-so we are using two green threads 
+so we are using two green threads
 1. first one accepts the connection and reads the data
 2. 2nd green thread will wait over channel for receipt of client details and will do the writing
 
@@ -82,23 +82,24 @@ and then send this client socket (TcpStream) over channel to previous green thre
 async fn server_async() -> io::Result<()> {
     //create
     let server_socket = TcpListener::bind("127.0.0.1:3000").await?;
-    let (ts, mut tr) = mpsc::channel::<TcpStream>(1000);
+    let (ts, mut tr) = mpsc::channel::<TcpStream>(100);
     //create a green thread for read/write to client socket - synchronised using channels
     tokio::spawn(async move {
         let mut client = tr.recv().await.unwrap();
-        client.write(b"Hello from tokio tcp").await.unwrap();
+        let mut buf = [0; 100];
+        loop {
+            client.read(&mut buf).await.unwrap();
+            client.write(b"Hello from tokio tcp").await.unwrap();
+        }
     });
-
-    let mut buf = [0; 100];
     loop {
-        let (mut client, _) = server_socket.accept().await?;
-        client.read(&mut buf).await?;
+        let (client, _) = server_socket.accept().await?;
         ts.send(client).await.unwrap();
     }
 }
 /*
 logic of code:
-the best way to utilise the green thread would be if we spawn 
+the best way to utilise the green thread would be if we spawn
 an individual green thread for handling (reading and writing data) each client
 so after accept call is made spawn a green thread which will do the reading & writing on the client
 I think this is the best possible scenario for a server using green thread
@@ -123,8 +124,10 @@ async fn green_thread_for_each_client() -> io::Result<()> {
         tokio::spawn(async move {
             //TODO: avoid this allocation of buffer for each green thread and use 1 allocation possibly use byte crate
             let mut buf = [0; 100];
-            client_socket.read(&mut buf).await.unwrap();
-            client_socket.write(&buf).await.unwrap();
+            loop {
+                client_socket.read(&mut buf).await.unwrap();
+                client_socket.write(&buf).await.unwrap();
+            }
         });
     }
 }

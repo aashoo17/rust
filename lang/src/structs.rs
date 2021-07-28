@@ -6,8 +6,8 @@ types of struct
 3. unit like
 
 TODO: struct layout in memory
- */
- 
+*/
+
 /*
 named field struct:
 convention - struct starts with caps and uses CamelCase, fields & methods are lowercase
@@ -56,6 +56,7 @@ impl Human {
         return self;
     }
 }
+
 //accessing struct field
 #[test]
 fn access_human_struct_fields() {

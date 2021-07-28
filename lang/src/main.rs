@@ -10,6 +10,7 @@
 #![allow(dead_code)]
 #![feature(duration_constants)]
 
+
 mod closure;
 mod core;
 mod crates_modules;
@@ -35,5 +36,5 @@ mod function;
 
 
 fn main() {
-    
+   
 }

@@ -15,7 +15,7 @@ move:
 so as we already know now that we can have only one owner to a memory
 so operations which takes ownership like assignments, passing to function arg etc
 will move the ownership from one variable to another
-old variable will be Initialised now and if used rust wil throw error - value is moved
+old variable will be Initialized now and if used rust wil throw error - value is moved
  */
 
 #[test]
