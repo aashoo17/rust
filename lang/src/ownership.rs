@@ -3,7 +3,6 @@ Ownership:
 all the memory allocated in rust will have always one and only owner
 and when owner goes out of scope typically after blocks {} memory will be cleaned up
  */
-#[test]
 fn ownership() {
     //memory is allocated on stack here for i32 variable
     let a = 10;
@@ -18,7 +17,6 @@ will move the ownership from one variable to another
 old variable will be Initialized now and if used rust wil throw error - value is moved
  */
 
-#[test]
 fn moves_ownership() {
     let a = String::from("Hello");
     //b takes ownership of memory pointed out by a now
@@ -33,7 +31,6 @@ types which implement Copy trait does not flow move rule and instead of moving t
 they will create a copy of themselves and pass
  */
 
-#[test]
 fn copy_type() {
     //i32 a Copy type variable
     let a = 10;

@@ -20,7 +20,8 @@ fn sample() {
     {
         let y = 10; //this gets say lifetime 'b
         x = &y; //this is where reference var x is used last 'a ends here
-                //'b ends here as owned variable y goes out of scope
+        //'b ends here as owned variable y goes out of scope
+        println!("{}",x);
     }
 }
 

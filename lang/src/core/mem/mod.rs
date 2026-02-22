@@ -57,7 +57,7 @@ fn replace() {
     let mut b = String::from("World");
 
     //replace b with value of a - a is consumed and can not be used further unless Copy type is used
-    mem::replace(&mut b, a);
+    let _ = mem::replace(&mut b, a);
     println!("{}", b);
 }
 
@@ -65,7 +65,7 @@ fn replace() {
 //run the types destructor in advance rather than waiting for variable to go out of scope and which will call destructor
 //scope means generally {} block
 fn drop() {
-    let a = 10;
+    let a = String::from("Hello");
     //run a destructor before scope is reached
     mem::drop(a);
 }

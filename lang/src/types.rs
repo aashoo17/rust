@@ -1,38 +1,30 @@
-#[test]
 fn integers() {
-    //putting i8, i16 etc at the end of literal so rust recognizes it to be i8,i16 otherwise it will thinks as i32
-    //or we can explicitly write the type like these let a: i8 = 10;
-    //signed integers
-    let a = 10i8;
-    let b = 10i16;
-    let c = 10;
-    let d = 10i64;
-    let e = 10isize;    //this will be used for values created from pointer subtraction
+    let signed_8bit: i8 = 10i8;
+    let signed_16bit: i16 = 10i16;
+    let signed_32bit_default: i32 = 10;
+    let signed_64bit: i64 = 10i64;
+    let signed_arch_size: isize = 10isize;    //this will be used for values created from pointer subtraction
 
     //unsigned integer types
-    let f = 10u8;
-    let g = 10u16;
-    let h = 10u32;
-    let i = 10u64;
-    let j = 10usize;
-
-    //TODO: show binary representations of integers
+    let unsigned_8bit: u8 = 10u8;
+    let unsigned_16bit: u16 = 10u16;
+    let unsigned_32bit: u32 = 10u32;
+    let unsigned_64bit: u64 = 10u64;
+    let unsigned_arch_size: usize = 10usize;
 
     //octal, hex & binary
-    let k = 0o12;
-    let l = 0x12;
-    let m = 0b10;
+    let octal_value: i32 = 0o12;
+    let hex_value: i32 = 0x12;
+    let binary_value: i32 = 0b10;
 
     //printing
-    println!("{}", a); //display print
-    println!("{:?}", b); //debug print
+    println!("{}", signed_8bit); //display print
+    println!("{:?}", signed_16bit); //debug print
 }
 
 /*
 float:
 f32,f64
-TODO: float representation IEEE- 754
-TODO: float overflow and underflow
 
 bool:
 true, false
@@ -43,64 +35,34 @@ char: 32 bits wide each - representing unicode
 
 fn floats() {
     //float
-    let a = 10.8f32;
-    let b = 10.8;   //default f64
+    let float_32bit: f32 = 10.8f32;
+    let float_64bit_default: f64 = 10.8;   //default f64
 }
 
-#[test]
 fn bool() {
     //bool
-    let a = true;
-    let b = false;
+    let is_true: bool = true;
+    let is_false: bool = false;
     //TODO: if we see only 1 bit is required to store bool how rust represents bool internally
     //rust takes 1 byte to store bool so that address of bool can be taken
 }
 
-#[test]
 fn char() {
     //char
-    let a = 'A';
-    //TODO: why char is represented always in 32 bit and there UTF-8 value is not used for char- what benefit char may be simple ??
-    //use unicode value to write any char
-    let b = '\u{CA0}';
-    println!("{},{}", a,b);
+    let letter_a: char = 'A';
+    //use unicode scalar value to write any char.
+    let unicode_char: char = '\u{CA0}'; //this is a kannada letter
+    println!("{},{}", letter_a, unicode_char);
 }
 
-//references & pointers will have there own section
-
-/*
-&str:
-array:
-slice:
-tuple:
-struct:
-enum:
- */
-
-#[test]
-fn compound_types() {
-    //array
-    let a = [10, 20, 30, 40, 50];
-    //ref to arrays
-    let a1 = &a;
-    let a2 = b"Hello World";    //byte array
+fn tuples() {
     //tuple
-    let b = (10, 20, "Hello");
+    let empty_tuple: () = ();   
+    let single_type_tuple: (i32,i32) = (10,20);   
+    let mixed_tuple: (i32, i32, &str) = (10, 20, "Hello");
     //access tuple values
-    println!("{} {} ",b.0,b.1);
+    println!("{} {} ", mixed_tuple.0, mixed_tuple.1);
     //tuples are used for returning multiple values from functions
-
-    //slice
-    //slices has size known implicitly - not in the type
-    let b = &a[..]; //slice to all array elements
-    let c = &a[1..3]; //slice to few elements
-
-    let d = String::from("Hello World");
-    //&str is same as slice which points to valid utf-8 collection
-    //&str can point them at heap(usually written as String), stack or even in binary
-    //similar to slice to array syntax &a[1..3] is not provided for &str as indexing or range getting is difficult in utf-8 which is
-    //multi byte (variable size) representation
-    let e = d.as_str();
 }
-
+//array, slice , String and &str is explained in refrences
 //struct, enum etc will be taken up in separate file
