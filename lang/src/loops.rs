@@ -1,23 +1,23 @@
 pub fn for_loops() {
-    for i in 0..10 {
-        print!("{}, ", i);
+    for index in 0..10 {
+        print!("{}, ", index);
     }
 
     //for loop - works with iterator
-    let a = vec![10, 20, 30, 40];
-    for element in &a {
-        print!("{} ", element);
+    let vector = vec![10, 20, 30, 40];
+    for number in &vector {
+        print!("{} ", number);
     }
 }
 
 pub fn while_loops() {
-    let a = vec![10, 20, 30, 40];
+    let vector = vec![10, 20, 30, 40];
 
     // while loop - conditional loop
-    let mut index = 0;
-    while index < a.len() {
-        println!("Value at index {}: {}", index, a[index]);
-        index += 1;
+    let mut current_index = 0;
+    while current_index < vector.len() {
+        println!("Value at index {}: {}", current_index, vector[current_index]);
+        current_index += 1;
     }
 }
 
@@ -32,4 +32,3 @@ fn loops(){
         println!("Counter: {}", counter);
     }
 }
-
